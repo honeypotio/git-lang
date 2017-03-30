@@ -2,7 +2,7 @@ const Config = require('./config');
 
 const getRepos = async function(req, userUrl) {
   const options = Object.assign({
-    uri: `${userUrl}/repos`
+    uri: `${userUrl}/repos?per_page=100`
   }, Config.requestOptions);
   
   try {
