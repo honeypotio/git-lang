@@ -4,6 +4,8 @@ const Repo = require('./src/repo');
 const Language = require('./src/language');
 const app = require('express')();
 
+// Prettify JSON
+app.set('json spaces', 2);
 
 function sumAllContributions(repoLanguages) {
   let userLanguages = repoLanguages.reduce((acc, repo) => {
