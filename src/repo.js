@@ -1,10 +1,9 @@
+const Config = require('./config');
+
 const getRepos = async function(req, userUrl) {
-  const options = {
-    uri: `${userUrl}/repos`,
-    headers: {
-      'User-Agent': 'Request-Promise'
-    }
-  };
+  const options = Object.assign({
+    uri: `${userUrl}/repos`
+  }, Config.requestOptions);
   
   try {
     let reposList = JSON.parse(await req(options));
@@ -24,5 +23,4 @@ const getUserRepos = async function(req, userUrl) {
 };
 
 module.exports.getAllRepos = getRepos;
-
 module.exports.getUserRepos = getUserRepos;

@@ -1,3 +1,9 @@
 module.exports = {
-  API_BASE: `https://api.github.com`
+  API_BASE: `https://api.github.com`,
+  requestOptions: {
+    headers: {
+      'User-Agent': 'Request-Promise',
+      'Authorization': `token ${process.env.GITHUB_TOKEN}`
+    }
+  }
 }

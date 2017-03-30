@@ -14,3 +14,11 @@ module.exports.getRepos = function(reqData) {
   }
   return Promise.resolve(JSON.stringify(repos));
 }
+
+module.exports.getRepoLanguage = function(reqData) {
+  if (!reqData.uri.includes('mojombo')) {
+    return Promise.reject({message: 'You need to provide a github username'});
+  }
+  let repoData = require(`../fixtures/${reqData.repoName}.json`);
+  return Promise.resolve(JSON.stringify(repoData));
+} 
