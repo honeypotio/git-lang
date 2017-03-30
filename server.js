@@ -37,25 +37,21 @@ app.get(`/user/:username`, (req, res, next) => {
   getUserLanguages(req.params.username).then(data => {
     let languageData = data.map(repo => repo.languages);
     let totalContributions = sumAllContributions(languageData);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(totalContributions));
+    res.json(totalContributions);
     next();
   }).catch(err => {
-    res.setHeader('Content-Type', 'application/json');
     res.status(404);
-    res.send(err.message);
+    res.json(err.message);
     next();
   });
 });
 
 app.get(`/repos/:username`, (req, res, next) => {
   getUserLanguages(req.params.username).then(data => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(data));
+    res.json(data);
   }).catch(err => {
-    res.setHeader('Content-Type', 'application/json');
     res.status(404);
-    res.send(err.message);
+    res.json(err.message);
     next();
   })
 });
