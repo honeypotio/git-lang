@@ -3,6 +3,7 @@ const Config = require('./src/config');
 const Repo = require('./src/repo');
 const Language = require('./src/language');
 const app = require('express')();
+const port = process.env.PORT || 8080;
 
 // Prettify JSON
 app.set('json spaces', 2);
@@ -58,6 +59,6 @@ app.get(`/repos/:username`, (req, res, next) => {
   })
 });
 
-app.listen(3000, function() {
-  console.log(`listening on port 3000`);
+app.listen(port, function() {
+  console.log(`listening on port ${port}`);
 });
