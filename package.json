@@ -2,7 +2,7 @@
   "name": "git-lang",
   "version": "0.0.1",
   "description": "Get programming languages for github contributions",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "express": "^4.15.2",
     "request": "^2.81.0",
@@ -12,6 +12,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "mocha tests/ --recursive"
   },
   "repository": {

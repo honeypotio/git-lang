@@ -4,32 +4,58 @@ const Repo = require('./src/repo');
 const Language = require('./src/language');
 const app = require('express')();
 
+
+function sumAllContributions(repoLanguages) {
+  let userLanguages = repoLanguages.reduce((acc, repo) => {
+    let repoLanguages = Object.keys(repo);
+    repoLanguages.forEach(language => {
+      acc[language] ? (acc[language] += repo[language]) : acc[language] = repo[language];
+    });
+    return acc;
+  },{});
+  return userLanguages;
+}
 // Get user => get user repos => get all repo languages => get a sum of all languages involved
 async function getUserLanguages(user) {
   try {
     let repos = await Repo.getUserRepos(request, `${Config.API_BASE}/users/${user}`);
     let repoNames = repos.map(repo => repo.full_name);
     let repoLanguages = await Language.getAllLanguages(request, repoNames);
-    // Sum up all the languages used by the user
-    let userLanguages = repoLanguages.reduce((acc, repo) => {
-      let repoLanguages = Object.keys(repo);
-      repoLanguages.forEach(language => {
-        acc[language] ? (acc[language] += repo[language]) : acc[language] = repo[language];
-      });
-      return acc;
-    },{});
+    let userLanguages = repoLanguages.map((repoData, index) => {
+      return {
+        name: repoNames[index],
+        languages: repoData
+      }
+    });
     return userLanguages;
   } catch (err) {
-    return {
-      error: err.message
-    }
+    throw new Error (err.message);
   }
 };
 
-app.get('/user/:username', (req, res, next) => {
+app.get(`/user/:username`, (req, res, next) => {
+  getUserLanguages(req.params.username).then(data => {
+    let languageData = data.map(repo => repo.languages);
+    let totalContributions = sumAllContributions(languageData);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(totalContributions));
+    next();
+  }).catch(err => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(404);
+    res.send(err.message);
+    next();
+  });
+});
+
+app.get(`/repos/:username`, (req, res, next) => {
   getUserLanguages(req.params.username).then(data => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(data));
+  }).catch(err => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(404);
+    res.send(err.message);
     next();
   })
 });
