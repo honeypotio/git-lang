@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   API_BASE: `https://api.github.com`,
   requestOptions: {

@@ -4,6 +4,7 @@
   "description": "Get programming languages for github contributions",
   "main": "server.js",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.0"
