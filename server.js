@@ -2,6 +2,7 @@ const request = require('request-promise');
 const Config = require('./src/config');
 const Repo = require('./src/repo');
 const Language = require('./src/language');
+const Commits = require('./src/commit');
 const app = require('express')();
 const port = process.env.PORT || 8080;
 
@@ -23,11 +24,16 @@ async function getUserLanguages(user) {
   try {
     let repos = await Repo.getUserRepos(request, `${Config.API_BASE}/users/${user}`);
     let repoNames = repos.map(repo => repo.full_name);
-    let repoLanguages = await Language.getAllLanguages(request, repoNames);
+    let repoData = await Promise.all([
+      Language.getAllLanguages(request, repoNames),
+      Commits.getCommitCount(request, repoNames)
+    ]);
+    let [repoLanguages, commitData] = repoData;
     let userLanguages = repoLanguages.map((repoData, index) => {
       return {
         name: repoNames[index],
-        languages: repoData
+        languages: repoData,
+        commits: commitData[index].commits
       }
     });
     return userLanguages;
@@ -44,7 +50,7 @@ app.get(`/user/:username`, (req, res, next) => {
     next();
   }).catch(err => {
     res.status(404);
-    res.json(err.message);
+    res.json({error: err.message});
     next();
   });
 });
@@ -54,7 +60,7 @@ app.get(`/repos/:username`, (req, res, next) => {
     res.json(data);
   }).catch(err => {
     res.status(404);
-    res.json(err.message);
+    res.json({error: err.message});
     next();
   })
 });

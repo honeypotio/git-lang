@@ -1,0 +1,42 @@
+[
+  {
+    "login": "mojombo",
+    "id": 1,
+    "avatar_url": "https://avatars3.githubusercontent.com/u/1?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/mojombo",
+    "html_url": "https://github.com/mojombo",
+    "followers_url": "https://api.github.com/users/mojombo/followers",
+    "following_url": "https://api.github.com/users/mojombo/following{/other_user}",
+    "gists_url": "https://api.github.com/users/mojombo/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/mojombo/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/mojombo/subscriptions",
+    "organizations_url": "https://api.github.com/users/mojombo/orgs",
+    "repos_url": "https://api.github.com/users/mojombo/repos",
+    "events_url": "https://api.github.com/users/mojombo/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/mojombo/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 12
+  },
+  {
+    "login": "include4eto",
+    "id": 3115248,
+    "avatar_url": "https://avatars2.githubusercontent.com/u/3115248?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/include4eto",
+    "html_url": "https://github.com/include4eto",
+    "followers_url": "https://api.github.com/users/include4eto/followers",
+    "following_url": "https://api.github.com/users/include4eto/following{/other_user}",
+    "gists_url": "https://api.github.com/users/include4eto/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/include4eto/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/include4eto/subscriptions",
+    "organizations_url": "https://api.github.com/users/include4eto/orgs",
+    "repos_url": "https://api.github.com/users/include4eto/repos",
+    "events_url": "https://api.github.com/users/include4eto/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/include4eto/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1
+  }
+]
