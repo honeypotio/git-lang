@@ -1,0 +1,21 @@
+{
+  "name": "git-lang",
+  "scripts": {
+  },
+  "env": {
+    "GITHUB_TOKEN": {
+      "required": true
+    },
+    "NODE_ENV": "production"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
