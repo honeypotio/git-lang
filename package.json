@@ -4,7 +4,7 @@
   "description": "Get programming languages for github contributions",
   "main": "server.js",
   "engines": {
-    "node": "^7.7.0"
+    "node": "^7.10.1"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
