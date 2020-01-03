@@ -1,10 +1,10 @@
 {
   "name": "git-lang",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Get programming languages for github contributions",
   "main": "server.js",
   "engines": {
-    "node": "^7.10.1"
+    "node": "^12.14.0"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
@@ -13,7 +13,7 @@
     "request-promise": "^4.2.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "mocha": "^6.2.2"
   },
   "scripts": {
     "start": "node server.js",
