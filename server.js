@@ -3,6 +3,7 @@ const Config = require('./src/config');
 const Repo = require('./src/repo');
 const Language = require('./src/language');
 const Commits = require('./src/commit');
+const User = require('./src/user');
 const app = require('express')();
 const port = process.env.PORT || 8080;
 
@@ -63,6 +64,21 @@ app.get(`/repos/:username`, (req, res, next) => {
     res.json({error: err.message});
     next();
   })
+});
+
+app.get(`/info/:username`, (req, res, next) => {
+  Promise.all([
+    User.getUser(request, req.params.username),
+    User.getFollowers(request, req.params.username),
+    User.getStarred(request, req.params.username)
+  ]).then(([user, followers, starred]) => {
+    let { created_at } = user;
+    res.json({ created_at, followers, starred });
+  }).catch(err => {
+    res.status(404);
+    res.json({error: err.message});
+    next();
+  });
 });
 
 app.listen(port, function() {
