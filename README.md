@@ -12,6 +12,7 @@ Project for getting a github user's popular languages using public repositories.
 ## Usage:
 - `/user/:username` - Returns aggregated data for a particular user. It's a sum of all languages obtained by adding up languages used in each user's repository.
 - `/repos/:username` - Returns a breakdown of user's repos and their specific languages
+- `/info/:username` - Returns user's creation date, followers, and starred repositories
 
 ## Contributing
 ------------
