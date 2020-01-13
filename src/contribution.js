@@ -2,7 +2,7 @@ const Config = require('./config');
 
 const makeRequest = async (req, username, page) => {
   const options = Object.assign({
-    uri: `${ Config.API_BASE }/search/commits?q=author:${username}&type=commits&sort=committer-date&order=asc&per_page=100&page=${page}`
+    uri: `${ Config.API_BASE }/search/commits?q=author:${username}&type=commits&sort=committer-date&order=desc&per_page=100&page=${page}`
   }, Config.requestOptions);
 
   let data = JSON.parse(await req(options));
