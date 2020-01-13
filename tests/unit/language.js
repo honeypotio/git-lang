@@ -1,4 +1,3 @@
-const Config = require('../../src/config');
 const Mocks = require('../helpers/mocks');
 const Language = require('../../src/language');
 const assert = require('assert');

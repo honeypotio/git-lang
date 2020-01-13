@@ -39,6 +39,8 @@ const getStarred = async function(req, username) {
   }
 }
 
-module.exports.getUser = getUser;
-module.exports.getFollowers = getFollowers;
-module.exports.getStarred = getStarred;
+module.exports = {
+  getUser,
+  getFollowers,
+  getStarred
+};

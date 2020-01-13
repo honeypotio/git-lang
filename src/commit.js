@@ -3,7 +3,6 @@ const Config = require('./config');
 const getRepoContributions = async function(req, repoName) {
   let options = Object.assign({
     uri: `${Config.API_BASE}/repos/${repoName}/contributors`,
-    repoName: repoName.replace('/', '-'),
     resolveWithFullResponse: true
   }, Config.requestOptions);
 

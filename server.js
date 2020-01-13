@@ -4,13 +4,14 @@ const Repo = require('./src/repo');
 const Language = require('./src/language');
 const Commits = require('./src/commit');
 const User = require('./src/user');
+const Contributions = require('./src/contribution');
 const app = require('express')();
 const port = process.env.PORT || 8080;
 
 // Prettify JSON
 app.set('json spaces', 2);
 
-function sumAllContributions(repoLanguages) {
+function sumAllLanguages(repoLanguages) {
   let userLanguages = repoLanguages.reduce((acc, repo) => {
     let repoLanguages = Object.keys(repo);
     repoLanguages.forEach(language => {
@@ -41,13 +42,13 @@ async function getUserLanguages(user) {
   } catch (err) {
     throw new Error (err.message);
   }
-};
+}
 
 app.get(`/user/:username`, (req, res, next) => {
   getUserLanguages(req.params.username).then(data => {
     let languageData = data.map(repo => repo.languages);
-    let totalContributions = sumAllContributions(languageData);
-    res.json(totalContributions);
+    let aggregatedLanguages = sumAllLanguages(languageData);
+    res.json(aggregatedLanguages);
     next();
   }).catch(err => {
     res.status(404);
@@ -79,6 +80,16 @@ app.get(`/info/:username`, (req, res, next) => {
     res.json({error: err.message});
     next();
   });
+});
+
+app.get(`/contributions/:username`, (req, res, next) => {
+  Contributions.getContributions(request, req.params.username).then(
+      data => res.json(data)
+    ).catch(err => {
+      res.status(404);
+      res.json({error: err.message});
+      next();
+    });
 });
 
 app.listen(port, function() {

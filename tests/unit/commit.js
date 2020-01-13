@@ -1,4 +1,3 @@
-const Config = require('../../src/config');
 const Mocks = require('../helpers/mocks');
 const Commits = require('../../src/commit');
 const assert = require('assert');
