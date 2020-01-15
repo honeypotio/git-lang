@@ -3,6 +3,7 @@ const Config = require('./config');
 const getRepoLanguages = async function(req, repoName) {
   let options = Object.assign({
     uri: `${Config.API_BASE}/repos/${repoName}/languages`,
+    repoName: repoName.replace('/', '-')
   }, Config.requestOptions);
 
   try {
